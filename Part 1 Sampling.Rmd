@@ -1,0 +1,300 @@
+---
+title: "Statistical Simulation"
+author: "Leihua Ye"
+date: "9/23/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+```
+
+# statistical simulation 101
+# part i: basics of sampling
+- runif 
+- sample
+- sapply
+- apply
+- applications
+
+Check the sample function; it is the foundation of statistical modeling 
+
+sample(x, size, replace = FALSE, prob = NULL)
+
+x: a vector of one or more elements from which to choose, or a positive integer
+size: a non-negative integer giving the number of items to choose
+replace: should sampling be with replacement?
+prob: a vector of probability weights for obtaining the elements of the vector being sampled 
+
+# how to generate a random sample
+runif(n,min=minimal_value,max=max_value)
+```{r}
+set.seed(2)
+runif(25,min=0,max=10)
+
+runif(25,min=0,max=10) %>% 
+  round(.,digits = 0)
+```
+
+
+```{r}
+# flip a coin 
+sample(c('H','T'),size = 10,replace=TRUE)
+sample(c(1:6),size=10,replace=TRUE)
+```
+
+# the sample() function draws randomly from a specified set of (scalar) objects allowing you to sample from arbitrary distributions of numbers
+```{r}
+#1. random permutation of sequence [1,10]
+set.seed(2)
+sample(10)
+?sample()
+```
+
+```{r}
+sample(1:10,4)
+```
+
+```{r}
+set.seed(1)
+sample(letters,18)
+```
+
+```{r}
+# from r documentation
+x<- 1:10 
+#a random permutation
+sample(x)
+
+# resample with replacement
+sample(x,replace=TRUE)
+```
+
+```{r}
+# random sample of size 10 from sequence [1,5] with equal probabilities
+equal_prob_dist = sample(5,10000,prob=rep(0.1,5),replace=T)
+hist(equal_prob_dist)
+```
+
+```{r}
+#random sample of size 10 from sequence[1,5] with unequal probabilities 
+unequal_prob_dist = sample(5,10000,prob = c(0.1,0.25,0.4,0.25,0.1),replace=T)
+hist(unequal_prob_dist)
+```
+By default, the probability is equal if don't specify it.
+
+# To sample rows from a data frame or a list, we can sample the indices into an object rather than the elements of the object itself. 取元素对应的indices！
+```{r}
+head(mtcars)
+```
+```{r}
+# create an index vector for the elements/rows 
+index <- seq_len(nrow(mtcars))
+ 
+#sample from the index vector 
+set.seed(12) 
+
+#to obtain a random sample of 10
+sample_index <- sample(index,10)
+
+# to show the sampled elements/rows 
+mtcars[sample_index,]
+```
+
+
+
+# Part 2: Application
+# example 1: dies
+```{r}
+# use sample() to run 10,000 trials using two fair dies. what is the probability of rolling a 7?
+set.seed(1)
+die = 1:6
+die1 = sample(die,10000,replace = TRUE,prob=NULL)
+die2= sample(die,10000,replace=TRUE,prob = NULL)
+outcomes = die1+die2
+mean(outcomes == 7)
+```
+
+```{r}
+# simulate the process 10000 times and check for discrepency 
+set.seed(1)
+for (i in 10000){
+  die_1 = sample(die,prob=NULL,replace=TRUE)
+  die_2 = sample(die,prob=NULL,replace=TRUE)
+  die_sum = die_1+die_2
+  print(mean(die_sum==7))
+}
+```
+```{r}
+# check for system time
+system.time(for (i in 10000){
+  die_1 = sample(die,prob=NULL,replace=TRUE)
+  die_2 = sample(die,prob=NULL,replace=TRUE)
+  die_sum = die_1+die_2
+  print(mean(die_sum==7))
+})
+```
+
+```{r}
+#You have two dies, and what is the probability of rolling a 7?
+# use sample() to run 10,000 trials using two fair dies. 
+set.seed(1)
+die = 1:6
+die_1 = sample(die,20000,replace=TRUE,prob=rep(1/6,6))
+die_2 = sample(die,20000,replace=TRUE,prob=rep(1/6,6))
+outcomes = die_1+die_2
+mean(outcomes==7)
+```
+
+```{r}
+# What is the probability of rolling a 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, and 13?
+sapply(2:13,function(x) mean(outcomes==x))
+#?sapply()
+```
+# check for sapply()
+sapply is a user-friendly version and wrapper of lapply by default returning a vector, matrix or, if simplify = "array", an array if appropriate, by applying simplify2array(). sapply(x, f, simplify = FALSE, USE.NAMES = FALSE) is the same as lapply(x, f).
+
+
+```{r}
+# Use the sample() function to determine the probability of rolling a 7 using three fair six-sided dies.
+set.seed(1)
+die = 1:6
+die1 = sample(die,10000,replace=TRUE, prob = NULL)
+die2 = sample(die1,10000,replace=TRUE, prob = NULL)
+die3 = sample(die,10000,replace = TRUE, prob= NULL)
+outcomes2 = die1+die2+die3
+mean(outcomes2==7)
+```
+
+```{r}
+# Use the sample() function to determine the probability of rolling a 7 using three fair six-sided dies.
+set.seed(1)
+die=1:6
+die_1 = sample(die, 20000,replace=TRUE,prob=NULL)# by default, equal probability
+die_2 = sample(die,20000,replace=TRUE, prob=NULL)
+die_3 = sample(die,20000,replace=TRUE, prob=NULL)
+die_combn = die_1+die_2+die_3
+mean(die_combn==7)
+```
+
+```{r}
+# Using three dies, what is the probability of rolling a 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, and 13?
+sapply(2:13,function(x) mean(die_combn==x))
+```
+
+# example 2 
+```{r}
+# do 10k samples and calculate how many observations are included and how many are not included? 
+set.seed(1)
+n=10000
+
+included_obs = length(unique(sample(1:n, replace = TRUE)))
+included_obs
+
+missing_obs = n-included_obs
+missing_obs
+```
+
+```{r}
+# from 1:100, do a 10k sample and calculate how many observations are included and how many are not included? 
+set.seed(1)
+n = 100
+included_observations = length(unique(sample(1:100,replace=TRUE, prob=NULL)))
+included_observations/n
+
+(n-included_observations)/n
+```
+
+#3 example 3
+```{r}
+# three ways of generating a m*n matrix with randomly assigned 0/1
+
+#3.1 for loop
+# create an empty matrix
+m <- 10
+n <- 10
+m00 <- matrix(0,m,n)
+
+for (i in 1:m) {
+  for (j in 1:n) {
+    m00[i,j] <-sample(c(0,1),1)
+  }
+}
+
+m00
+```
+
+```{r}
+system.time(for (i in 1:m) {
+  for (j in 1:n) {
+    m00[m,n] <-sample(c(0,1),1)
+  }
+}
+)
+```
+
+
+
+```{r}
+#3.2 apply() function
+m <-10
+n<-10
+
+m0 <- matrix(0,m,n)
+
+apply(m0,c(1,2),function(x) sample(c(0,1),1))
+
+system.time(apply(m0,c(1,2),function(x) sample(c(0,1),1)))
+?apply()
+```
+apply():
+- Returns a vector or array or list of values obtained by applying a function to margins of an array or matrix.
+- apply(x,margin, fun, ...)
+    - x: an array, or matrix 
+    - margin: a vector giving the subscripts which the function will be applied over. for a matrix 1 indicates rows, and 2 indicates columns. c(1,2) indicates rows and columns. where x has named dimnames, it can be a character vector selecting dimension names 
+    - fun: the function to be applied. 
+
+```{r}
+#3.3 some other methods 
+#1 generate a bunch of uniformly distributed[0,1) random numbers; round them to the closest integer
+m1<-round(matrix(runif(r*c),r,c))
+#m1
+system.time(m1<-round(matrix(runif(r*c),r,c)))
+```
+
+```{r}
+#generate r*c random numbers following a binomial distribution; 
+# allow for different probabilities, rahter than 0.5 as in m1
+m2 <- matrix(rbinom(r*c,1,0.5),r,c)
+#m2
+```
+
+```{r}
+system.time(m3<-matrix(round(runif(r*c)),r,c))
+```
+
+```{r}
+m4<-matrix(sample(0:1,r*c,replace=TRUE),r,c)
+#m4
+```
+
+#4 example 4
+```{r}
+# flip a coin 10 times and simulate 10,000 times, show the distribution of total heads
+
+# create an empty list 
+total_heads = c()
+
+# use a for looop to simulate coin-flipping 10 times; repeat it for 10,000 times. 
+for (i in 1:10000){
+  sum_heads = sum(round(runif(10,0,1)))
+  total_heads = c(total_heads, sum_heads)
+  }
+hist(total_heads)
+```
+
+Reference:
+1. https://bookdown.org/rdpeng/rprogdatascience/simulation.html#random-sampling
+2. R documentation of Sampling 
+3. https://crumplab.github.io/programmingforpsych/simulating-and-analyzing-data-in-r.html
