@@ -280,9 +280,8 @@ m4<-matrix(sample(0:1,r*c,replace=TRUE),r,c)
 ```
 
 #4 example 4
+Flip a coin 10 times and simulate the process for 10,000 times. Show the distribution of the number of heads shown up.
 ```{r}
-# flip a coin 10 times and simulate 10,000 times, show the distribution of total heads
-
 # create an empty list 
 total_heads = c()
 
@@ -291,6 +290,7 @@ for (i in 1:10000){
   sum_heads = sum(round(runif(10,0,1)))
   total_heads = c(total_heads, sum_heads)
   }
+
 hist(total_heads)
 ```
 
