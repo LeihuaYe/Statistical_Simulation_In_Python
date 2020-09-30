@@ -13,10 +13,14 @@ This project is conducted in the R environment, and the dplyr library is needed 
 
 ## About the Author
 
-Leihua Ye is a Ph.D. Candidate in political science and has received a Master's degree in Statistics from the University of California, Santa Barbara. Leihua is interested in user behaviors, public opinion and behavior, research design, big data, and Machine Learning.
+Leihua Ye is a Ph.D. Researcher at the UC, Santa Barbara. He has received extensive training in Causal Inference, Research Design, Machine Learning, Big Data, and Machine Learning. 
+
+He receives his B.A. and M.A. from the Uni. of Nottingham. 
 
 ## Contact
 
-yeleihua@gmail.com
+Email: yeleihua@gmail.com
 
-www.linkedin.com/in/leihuaye
+LinkedIn: www.linkedin.com/in/leihuaye
+
+Tech Blog: https://medium.com/@leihua_ye
