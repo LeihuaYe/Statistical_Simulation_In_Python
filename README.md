@@ -2,14 +2,19 @@
 
 # Project Summary
 
-This post explains what statistical simulation is and how it is done in R. It contains three parts: 1. sampling 2. distribution 3. advanced topics. In part 1, I introduce how to create random numbers, sample with equal and uneuqal probabilities, their applications.
+This post explains what statistical simulation is and how it is done in R and Python. 
 
-The entire writeup is available here at <https://medium.com/@leihua_ye>.
+It contains three parts: part 1. sampling; part 2. distribution and applications. In part 1, I introduce how to create random numbers, sample with equal and uneuqal probabilities, their applications. In part 2, I apply these distributions to solve real-life Data Science Interview questions. 
+
+The entire write-ups are available here.
+
+Part 1: https://towardsdatascience.com/statistical-simulation-in-r-part-1-d9cb4dc393c9
+
+Part t: https://towardsdatascience.com/statistical-simulation-in-python-part-2-91f71f474f77
 
 ## Installing
 
-This project is conducted in the R environment, and the dplyr library is needed for data analysis. 
-
+To replicate part 1, please install dplyr in R. To replicate part 2, please install numpy in Python.
 
 ## About the Author
 
