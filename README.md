@@ -1,4 +1,4 @@
-# Statistical_Simulation_in_R
+# Statistical Simulation
 
 # Project Summary
 
