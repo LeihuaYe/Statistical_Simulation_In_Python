@@ -4,7 +4,9 @@
 
 This post explains what statistical simulation is and how it is done in R and Python. 
 
-It contains three parts: part 1. sampling; part 2. distribution and applications. In part 1, I introduce how to create random numbers, sample with equal and uneuqal probabilities, their applications. In part 2, I apply these distributions to solve real-life Data Science Interview questions. 
+It contains two parts: part 1. sampling; part 2. distribution and applications. 
+
+In part 1, I introduce how to create random numbers, sample with equal and uneuqal probabilities, their applications. In part 2, I apply these distributions to solve real-life Data Science Interview questions. 
 
 The entire write-ups are available here.
 
