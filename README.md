@@ -1,22 +1,29 @@
-# Statistical Simulation
+# Statistical Simulation in Python
 
 # Project Summary
 
-This post explains what statistical simulation is and how it is done in R and Python. 
+This repo hosts R/Python code to common statistical distributions. This is an on-going project, and currently it has three parts:
+1. sampling (part 1)
+2. distribution and applications (part 2)
+3. An end-to-end intro to A/B tests
 
-It contains two parts: part 1. sampling; part 2. distribution and applications. 
-
-In part 1, I introduce how to create random numbers, sample with equal and uneuqal probabilities, their applications. In part 2, I apply these distributions to solve real-life Data Science Interview questions. 
+In part 1, I introduce how to create random numbers, sample with equal and unequal probabilities, their applications. In part 2, I apply these distributions to solve real-life Data Science Interview questions. Part 3 walks through how to conduct an A/B test end-to-end with simulated data. 
 
 The entire write-ups are available here.
 
 Part 1: https://towardsdatascience.com/statistical-simulation-in-r-part-1-d9cb4dc393c9
 
-Part t: https://towardsdatascience.com/statistical-simulation-in-python-part-2-91f71f474f77
+Part 2: https://towardsdatascience.com/statistical-simulation-in-python-part-2-91f71f474f77
+
+Part 3: https://leihua-ye.medium.com
 
 ## Installing
 
-To replicate part 1, please install dplyr in R. To replicate part 2, please install numpy in Python.
+To replicate part 1, please install dplyr in R. 
+
+To replicate part 2, please install numpy in Python.
+
+To replicate part 3, please install pandas in Python.
 
 ## About the Author
 
