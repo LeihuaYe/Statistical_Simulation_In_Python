@@ -18,15 +18,17 @@ Part 2: https://towardsdatascience.com/statistical-simulation-in-python-part-2-9
 
 Part 3: https://towardsdatascience.com/a-practical-guide-to-a-b-tests-in-python-66666f5c3b02?source=friends_link&sk=null
 
-Part 4: https://leihua-ye.medium.com
+Part 4: https://towardsdatascience.com/an-a-b-test-loses-its-luster-if-a-a-tests-fail-2dd11fa6d241?sk=8d4cebf2d3362704a4121b4518364c36
 
 ## Installing
 
-To replicate part 1, please install dplyr in R. 
+For part 1, please install dplyr in R. 
 
-To replicate part 2, please install numpy in Python.
+For part 2, please install numpy in Python.
 
-To replicate part 3, please install pandas in Python.
+For part 3, please install pandas in Python.
+
+For part 4, please install pandas in Python
 
 ## About the Author
 
