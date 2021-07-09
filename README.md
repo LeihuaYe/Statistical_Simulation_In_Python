@@ -6,6 +6,7 @@ This repo hosts R/Python code to common statistical distributions. This is an on
 1. sampling (part 1)
 2. distribution and applications (part 2)
 3. An end-to-end intro to A/B tests
+4. Why A/A Tests? What if we fail A/A tests?
 
 In part 1, I introduce how to create random numbers, sample with equal and unequal probabilities, their applications. In part 2, I apply these distributions to solve real-life Data Science Interview questions. Part 3 walks through how to conduct an A/B test end-to-end with simulated data. 
 
