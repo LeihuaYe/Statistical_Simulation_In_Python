@@ -15,7 +15,9 @@ Part 1: https://towardsdatascience.com/statistical-simulation-in-r-part-1-d9cb4d
 
 Part 2: https://towardsdatascience.com/statistical-simulation-in-python-part-2-91f71f474f77
 
-Part 3: https://leihua-ye.medium.com
+Part 3: https://towardsdatascience.com/a-practical-guide-to-a-b-tests-in-python-66666f5c3b02?source=friends_link&sk=null
+
+Part 4: https://leihua-ye.medium.com
 
 ## Installing
 
